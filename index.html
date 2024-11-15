@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Подарок для стоматолога</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+            background-color: #f4f4f9;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+        }
+        .question, #result {
+            display: none;
+        }
+        #result {
+            font-size: 1.2em;
+            color: #4CAF50;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Тест для настоящего стоматолога!</h1>
+        <div class="question" id="question1">
+            <p>Какую щётку ты возьмёшь с собой на необитаемый остров?</p>
+            <button onclick="nextQuestion('question2')">Электрическую, а как иначе?</button>
+            <button onclick="nextQuestion('question2')">Обычную, главное, чтобы работала</button>
+            <button onclick="nextQuestion('question2')">Зачем щётка, если на острове нет людей?</button>
+        </div>
+        <div class="question" id="question2">
+            <p>Что выбрать для идеального дня стоматолога?</p>
+            <button onclick="nextQuestion('question3')">Посещение выставки зубных протезов</button>
+            <button onclick="nextQuestion('question3')">Коллекцию анекдотов про зубных фей</button>
+            <button onclick="nextQuestion('question3')">День, когда все пациенты говорят “Спасибо!”</button>
+        </div>
+        <div class="question" id="question3">
+            <p>Что предпочесть: бесплатный зубной набор или подарок от "Золотое яблоко"?</p>
+            <button onclick="showResult()">Зубной набор</button>
+            <button onclick="showResult()">Подарок от "Золотое яблоко"</button>
+        </div>
+        <div id="result">
+            <h2>Поздравляем! 🎉</h2>
+            <p>Ты прошёл тест! Вот твой купон на подарок от "Золотое яблоко":</p>
+            <p><strong>КУПОН: GOLDENSMILE2024</strong></p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("question1").style.display = "block";
+
+        function nextQuestion(nextId) {
+            const currentQuestion = document.querySelector(".question:not([style*='display: none'])");
+            currentQuestion.style.display = "none";
+            document.getElementById(nextId).style.display = "block";
+        }
+
+        function showResult() {
+            const lastQuestion = document.querySelector(".question:not([style*='display: none'])");
+            lastQuestion.style.display = "none";
+            document.getElementById("result").style.display = "block";
+        }
+    </script>
+</body>
+</html>
