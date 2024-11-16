@@ -8,22 +8,24 @@
         body {
             font-family: 'Comic Sans MS', sans-serif;
             text-align: center;
-            margin: 20px;
+            margin: 0;
+            padding: 20px;
             background: linear-gradient(135deg, #ffcccb, #ffb3d9);
             color: #333;
+            box-sizing: border-box;
         }
         h1 {
             color: #ff6347;
-            font-size: 2em;
-            margin-bottom: 20px;
+            font-size: 1.8em;
+            margin-bottom: 15px;
         }
         .container {
-            max-width: 600px;
+            max-width: 90%;
             margin: auto;
             padding: 20px;
             background-color: #fff;
             border-radius: 15px;
-            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
         }
         .question {
             display: none;
@@ -34,49 +36,77 @@
             color: white;
             border: none;
             border-radius: 10px;
-            padding: 10px 20px;
-            font-size: 1.1em;
+            padding: 10px 15px;
+            font-size: 1em;
             margin: 10px;
             cursor: pointer;
             transition: all 0.3s ease;
+            width: 100%;
+            max-width: 300px;
         }
         button:hover {
             background-color: #ff4500;
-            transform: scale(1.1);
+            transform: scale(1.05);
         }
         #result {
             display: none;
-            font-size: 1.5em;
+            font-size: 1.3em;
             color: #32cd32;
             margin-top: 20px;
         }
         #result h2 {
             color: #ff6347;
-            font-size: 2.5em;
+            font-size: 2em;
         }
         #result p {
-            font-size: 1.3em;
+            font-size: 1.1em;
             color: #ff6347;
         }
         .coupon {
-            font-size: 1.5em;
+            font-size: 1.2em;
             color: #8b0000;
             font-weight: bold;
             background-color: #fffacd;
-            padding: 15px;
+            padding: 10px;
             border-radius: 5px;
-            margin-top: 20px;
+            margin-top: 15px;
         }
-        .cat {
-            font-size: 3em;
-            margin-top: 20px;
+        .cat-ascii {
+            font-family: monospace;
+            white-space: pre;
+            font-size: 1em;
+            color: #ff6347;
+            margin: 20px 0;
+        }
+        /* Уменьшение размера ASCII-арта на мобильных */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.5em;
+            }
+            button {
+                font-size: 1em;
+                padding: 8px;
+            }
+            .cat-ascii {
+                font-size: 0.9em;
+            }
+            #result h2 {
+                font-size: 1.8em;
+            }
+            #result p, .coupon {
+                font-size: 1em;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Тест для настоящего стоматолога!</h1>
-        <div class="cat">🐱🎉</div>
+        <div class="cat-ascii">
+            /\_/\  
+           ( o.o )  
+            > ^ <
+        </div>
         <div class="question" id="question1">
             <p>Какую щётку ты возьмёшь с собой на необитаемый остров?</p>
             <button onclick="nextQuestion('question2')">Электрическую, а как иначе?</button>
@@ -91,12 +121,29 @@
         </div>
         <div class="question" id="question3">
             <p>Что предпочесть: бесплатный зубной набор или подарок от "Золотое яблоко"?</p>
-            <button onclick="showResult()">Зубной набор</button>
-            <button onclick="showResult()">Подарок от "Золотое яблоко"</button>
+            <button onclick="nextQuestion('question4')">Зубной набор</button>
+            <button onclick="nextQuestion('question4')">Подарок от "Золотое яблоко"</button>
+        </div>
+        <div class="question" id="question4">
+            <p>Какую зубную пасту вы выберете для своего питомца?</p>
+            <button onclick="nextQuestion('question5')">Мятную с ароматом тунца</button>
+            <button onclick="nextQuestion('question5')">С гелем и блёстками</button>
+            <button onclick="nextQuestion('question5')">Какую-какую пасту? У меня же кот!</button>
+        </div>
+        <div class="question" id="question5">
+            <p>Если бы вы были зубной феей, как бы вы награждали за зубы?</p>
+            <button onclick="showResult()">Конфетами - ведь они того стоят!</button>
+            <button onclick="showResult()">Сертификат на чистку</button>
+            <button onclick="showResult()">Улыбками котиков и весёлыми стикерами</button>
         </div>
         <div id="result">
             <h2>Поздравляем! 🎉</h2>
-            <div class="cat">😸🎁</div>
+            <div class="cat-ascii">
+               ／ﾌﾌ 　　　　　　 　ム｀ヽ<br>
+               / ノ) 　 ∧∧　　）　ヽ<br>
+              / ｜　( ﾟДﾟ)／　　 ｜ <br>
+              ﾉ⌒＿⌒　　　　　/<br>
+            </div>
             <p>Ты прошёл тест! Вот твой купон на подарок от "Золотое яблоко":</p>
             <div class="coupon">
                 <p>КУПОН: GOLDENSMILE2024</p>
