@@ -1,161 +1,104 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Подарок для стоматолога</title>
+    <title>Happy New Year!</title>
     <style>
         body {
-            font-family: 'Comic Sans MS', sans-serif;
-            text-align: center;
             margin: 0;
-            padding: 20px;
-            background: linear-gradient(135deg, #ffcccb, #ffb3d9);
-            color: #333;
-            box-sizing: border-box;
+            padding: 0;
+            background: #1e1e2f;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
         }
-        h1 {
-            color: #ff6347;
-            font-size: 1.8em;
-            margin-bottom: 15px;
-        }
+
         .container {
-            max-width: 90%;
-            margin: auto;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 15px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
         }
-        .question {
-            display: none;
-            margin-bottom: 20px;
-        }
-        button {
-            background-color: #ff6347;
-            color: white;
-            border: none;
-            border-radius: 10px;
-            padding: 10px 15px;
-            font-size: 1em;
-            margin: 10px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            width: 100%;
-            max-width: 300px;
-        }
-        button:hover {
-            background-color: #ff4500;
-            transform: scale(1.05);
-        }
-        #result {
-            display: none;
-            font-size: 1.3em;
-            color: #32cd32;
-            margin-top: 20px;
-        }
-        #result h2 {
-            color: #ff6347;
-            font-size: 2em;
-        }
-        #result p {
-            font-size: 1.1em;
-            color: #ff6347;
-        }
-        .coupon {
-            font-size: 1.2em;
-            color: #8b0000;
-            font-weight: bold;
-            background-color: #fffacd;
-            padding: 10px;
-            border-radius: 5px;
-            margin-top: 15px;
-        }
-        .cat-ascii {
-            font-family: monospace;
-            white-space: pre;
+
+        h1 {
             font-size: 3em;
-            color: #ff6347;
+            text-shadow: 0 0 10px #fff, 0 0 20px #f39c12;
+        }
+
+        p {
+            font-size: 1.5em;
             margin: 20px 0;
         }
-        /* Уменьшение размера ASCII-арта на мобильных */
-        @media (max-width: 600px) {
-            h1 {
-                font-size: 1.5em;
+
+        .sparkles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .snowflake {
+            position: absolute;
+            top: -10px;
+            color: #fff;
+            font-size: 1em;
+            animation: fall 10s linear infinite;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh);
             }
-            button {
-                font-size: 1em;
-                padding: 8px;
-            }
-            .cat-ascii {
-                font-size: 0.9em;
-            }
-            #result h2 {
-                font-size: 1.8em;
-            }
-            #result p, .coupon {
-                font-size: 1em;
-            }
+        }
+
+        .cat-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://placekitten.com/800/800') repeat;
+            opacity: 0.1;
+            z-index: -1;
         }
     </style>
 </head>
 <body>
+    <div class="cat-background"></div>
+
     <div class="container">
-        <h1>Тест для настоящего стоматолога!</h1>
-        <div class="question" id="question1">
-            <p>Какую щётку ты возьмёшь с собой на необитаемый остров?</p>
-            <button onclick="nextQuestion('question2')">Электрическую, а как иначе?</button>
-            <button onclick="nextQuestion('question2')">Обычную, главное, чтобы работала</button>
-            <button onclick="nextQuestion('question2')">Зачем щётка, если на острове нет людей?</button>
-        </div>
-        <div class="question" id="question2">
-            <p>Что выбрать для идеального дня стоматолога?</p>
-            <button onclick="nextQuestion('question3')">Посещение выставки зубных протезов</button>
-            <button onclick="nextQuestion('question3')">Коллекцию анекдотов про зубных фей</button>
-            <button onclick="nextQuestion('question3')">День, когда все пациенты говорят “Спасибо!”</button>
-        </div>
-        <div class="question" id="question3">
-            <p>Какую зубную пасту вы выберете для своего питомца?</p>
-            <button onclick="nextQuestion('question4')">Мятную с ароматом тунца</button>
-            <button onclick="nextQuestion('question4')">С гелем и блёстками</button>
-            <button onclick="nextQuestion('question4')">Какую-какую пасту? У меня же кот!</button>
-        </div>
-        <div class="question" id="question4">
-            <p>Если бы вы были зубной феей, как бы вы награждали за зубы?</p>
-            <button onclick="nextQuestion('question5')">Конфетами - ведь они того стоят!</button>
-            <button onclick="nextQuestion('question5')">Сертификат на чистку</button>
-            <button onclick="nextQuestion('question5')">Улыбками котиков и весёлыми стикерами</button>
-        </div>
-        <div class="question" id="question5">
-            <p>Что предпочесть: классный зубной набор или супер классный зубной набор?</p>
-            <button onclick="showResult()">Классный зубной набор</button>
-            <button onclick="showResult()">Супер классный зубной набор</button>
-        </div>
-        <div id="result">
-            <h2>Поздравляем!</h2>
-            <div class="cat-ascii">ฅ^•ﻌ•^ฅ
-            </div>
-            <p>Ты прошёл тест! 
-               <p> В 19.00 тебе придёт купон, при помощи которого ты сможешь купить зубной набор или все, что ты пожелаешь!</p>
-            <div class="coupon">
-                <p>С ДНЁМ РОЖДЕНИЯ!!!</p>
-            </div>
-        </div>
+        <h1>Классного и счастливого Нового года!</h1>
+        <p>Пусть ваш год будет ярким и удачным!</p>
     </div>
 
-    <script>
-        document.getElementById("question1").style.display = "block";
+    <div class="sparkles" id="sparkles"></div>
 
-        function nextQuestion(nextId) {
-            const currentQuestion = document.querySelector(".question:not([style*='display: none'])");
-            currentQuestion.style.display = "none";
-            document.getElementById(nextId).style.display = "block";
+    <script>
+        // Generate sparkles
+        for (let i = 0; i < 100; i++) {
+            const sparkle = document.createElement('div');
+            sparkle.style.position = 'absolute';
+            sparkle.style.width = '5px';
+            sparkle.style.height = '5px';
+            sparkle.style.borderRadius = '50%';
+            sparkle.style.background = `rgba(255, 255, 255, ${Math.random()})`;
+            sparkle.style.top = `${Math.random() * 100}vh`;
+            sparkle.style.left = `${Math.random() * 100}vw`;
+            sparkle.style.boxShadow = '0 0 10px rgba(255, 255, 255, 0.8)';
+            document.getElementById('sparkles').appendChild(sparkle);
         }
 
-        function showResult() {
-            const lastQuestion = document.querySelector(".question:not([style*='display: none'])");
-            lastQuestion.style.display = "none";
-            document.getElementById("result").style.display = "block";
+        // Generate snowflakes
+        for (let i = 0; i < 50; i++) {
+            const snowflake = document.createElement('div');
+            snowflake.classList.add('snowflake');
+            snowflake.innerText = '❄';
+            snowflake.style.left = `${Math.random() * 100}vw`;
+            snowflake.style.fontSize = `${Math.random() * 1.5 + 0.5}em`;
+            snowflake.style.animationDuration = `${Math.random() * 5 + 5}s`;
+            document.body.appendChild(snowflake);
         }
     </script>
 </body>
